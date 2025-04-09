@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>조강현 TFT 점수</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>조강현 (Messi Of TFT)의 TFT 점수</h1>
+    <div id="score">불러오는 중...</div>
+  </div>
+  <script>
+    async function fetchData() {
+      const res = await fetch('/api/getTFTData');
+      const data = await res.json();
+      document.getElementById('score').innerText = `${data.tier} ${data.rank} - ${data.lp} LP`;
+    }
+    fetchData();
+    setInterval(fetchData, 60000);
+  </script>
+</body>
+</html>
